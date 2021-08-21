@@ -1,6 +1,5 @@
 package vsga.mobile.aplikasisqlite.helper;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -32,7 +31,7 @@ public class DbHelper extends SQLiteOpenHelper {
         final String SQL_CREATE_MOVIE_TABLE = "CREATE TABLE " + TABLE_SQLite + " (" +
                 COLUMN_ID + " INTEGER PRIMARY KEY autoincrement, " +
                 COLUMN_NAME + " TEXT NOT NULL, " +
-                COLUMN_ADDRESS + " TEXT NOT NULL" +
+                COLUMN_ADDRESS + " TEXT NOT NULL " +
                 ")";
 
         db.execSQL(SQL_CREATE_MOVIE_TABLE);
@@ -46,7 +45,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     public ArrayList<HashMap<String, String>> getAllData() {
         ArrayList<HashMap<String, String>> wordList;
-        wordList = new ArrayList<HashMap<String, String>>();
+        wordList = new ArrayList<>();
         String selectQuery = "SELECT * FROM " + TABLE_SQLite;
         SQLiteDatabase database = this.getWritableDatabase();
         Cursor cursor = database.rawQuery(selectQuery, null);
@@ -66,6 +65,29 @@ public class DbHelper extends SQLiteOpenHelper {
         return wordList;
     }
 
+    //membuat fungsi simpan
+    public void insert(String name, String address){
+        SQLiteDatabase database = this.getWritableDatabase();
+        String queryValues = "INSERT INTO " + TABLE_SQLite + " (name, address) " + "VALUES ('" + name + "', '" + address +"')";
+
+        Log.e("insert sqlite ", "" + queryValues);
+        database.execSQL(queryValues);
+        database.close();
+    }
+
+    //membuat fungsi update
+    public void update(int id, String name, String address){
+        SQLiteDatabase database = this.getWritableDatabase();
+
+        String updateQuery = "UPDATE " + TABLE_SQLite + " SET "
+                + COLUMN_NAME + "='" + name + "', "
+                + COLUMN_ADDRESS + "='" + address + "'"
+                + " WHERE " + COLUMN_ID + "=" + "'" + id + "'";
+        Log.e("update sqlite", updateQuery);
+        database.execSQL(updateQuery);
+        database.close();
+    }
+
     //membuat fungsi delete digunakan untuk data yang telah diinput
     public void delete(int id){
         SQLiteDatabase database = this.getWritableDatabase();
@@ -75,4 +97,5 @@ public class DbHelper extends SQLiteOpenHelper {
         database.execSQL(updateQuery);
         database.close();
     }
+
 }

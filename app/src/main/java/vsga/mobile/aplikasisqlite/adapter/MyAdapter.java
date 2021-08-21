@@ -11,13 +11,14 @@ import android.widget.TextView;
 import java.util.List;
 
 import vsga.mobile.aplikasisqlite.R;
+import vsga.mobile.aplikasisqlite.model.Data;
 
-public class Adapter extends BaseAdapter {
+public class MyAdapter extends BaseAdapter {
     private Activity activity;
     private LayoutInflater inflater;
     private List<Data> items;
 
-    public Adapter(Activity activity, List<Data> items){
+    public MyAdapter(Activity activity, List<Data> items){
         this.activity = activity;
         this.items = items;
     }
