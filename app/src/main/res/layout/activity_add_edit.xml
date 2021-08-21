@@ -43,7 +43,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:text="@string/submit"
-            style="?android:attr/buttonBarButtonStyle" />
+            style="?android:attr/buttonBarButtonStyle"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/design_default_color_primary"/>
 
         <Button
             android:id="@+id/btnCancel"
@@ -51,6 +53,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:text="@string/cancel"
-            style="?android:attr/buttonBarButtonStyle" />
+            style="?android:attr/buttonBarButtonStyle"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/design_default_color_primary"/>
     </LinearLayout>
 </LinearLayout>
